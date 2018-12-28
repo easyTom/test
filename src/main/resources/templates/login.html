@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <link href="/js/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<!-- 47.105.49.243/t1 -->
+<body>
+	<form action="">
+		<table >
+			<thead>
+				<tr>
+					<th>你是谁啊？</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <tr>
+					<td>姓名：</td><td><input name="user"/></td>
+				</tr>
+				<tr>
+					<td>密码：</td><td><input name="pwd"/></td>
+				</tr> -->
+				<tr>
+					<td>我是:<input id="o"/></td>
+					<td><input type="button" value="Try~" onclick="gototom()"/></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	
+	<script  th:inline="javascript">
+		function gototom() {
+			var pwd = $("#o").val();
+			var url = [[${address}]];
+			if(pwd=='20171111'){
+				location.href=url+"/I/love/you.html";
+			}else{
+				alert("验证失败");
+			}
+		}
+	</script>
+</body>
+</html>

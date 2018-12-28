@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head ></head>
+
+<body>	<!-- top前面没有/ -->
+	<div th:include="top/top :: top"></div>
+<!-- 	<p>
+			基本操作：
+				模板位置：th:fragment="XXX"
+													
+					 例如：
+						<div th:fragment="footerOne">
+				 			   © 2018 8 8  by Tom
+						</div>
+													
+				th:include="绝对路径 :: XXX的值"
+				
+				
+				th:utext=""	输出文本并渲染文本中的标签
+				th:text=""	直接输出文本
+				th:block=""有时候需要在代码外部加层条件，但写div之类的又影响样式，此情况下你可以用block
+				th:with="" 局部变量
+				<span th:text="${#dates.format(XXXXXX,'yyyy-MM-dd HH:mm:ss')}"  > 日期格式化显示
+				<span th:if="${#strings.length(XXX) gt 5 } "  th:text="${#strings.substring(XXX,0,5) + '...'}"></span> 截取字符串
+				<script th:inline="javascript"  >
+			        var size= [[${subchannels.size()}]];
+			        console.info(size)
+			    </script>									传值到JS
+			    th:href="" 引入地址等
+			    th:src="" 用于引入图片等
+	</p> -->
+
+<br>	<a th:href="@{https://www.cnblogs.com/zjfjava/p/6893486.html}">绝对路径(→→→ th的各种标签)</a>
+<br>	<a th:href="@{/}">相对路径(回到目录)</a>
+<br>	<a th:href="@{css/bootstrap.min.css}">Content路径,默认访问static下的css文件夹(不存在 所以404)</a>
+
+<br>	<span th:text="'Welcome to our application, ' + ${tt} + '!'"></span>
+<br>	<span th:text="|Welcome to our application, ${tt}!|"></span>
+	
+
+<br>
+	<!--绝对路径引入公共头部或底部相关代码 -->
+	<div th:include="/back/import/footer :: footerOne"></div>
+	
+	<br>-----------------------------
+	
+	<div th:utext="${msgutext}"></div>
+	<div th:text="${msgutext}"></div>
+	
+	<br>-----------------------------
+	<br>
+	 <th:block th:each="mylist,iterStat:${list}">
+	 	ok
+	    <span th:text="${mylist}"></span>
+	        <th:block th:if="${iterStat.index le 1}">
+	            <span th:text="${mylist}"></span>
+	        </th:block>
+	</th:block>
+	
+	<br>-----------------------------
+	
+	<br> <span th:text="${#dates.format(createDate,'yyyy-MM-dd HH:mm:ss')}"  ></span>
+	<br> <span th:text="${createDate}"  ></span>
+	
+	<br>-----------------------------
+	
+	<span th:if="${#strings.length(title) gt 5 } "  th:text="${#strings.substring(title,0,5)}"></span>
+	<!-- 长度大于5 不显示数据 -->
+	<span th:if="${#strings.length(tt) gt 5 } "  th:text="${#strings.substring(tt,0,5) + '…'}"></span>
+	
+	<br>-----------------------------
+
+	<select name="subId" id="subId" >
+            <option value="">请选择</option>
+            <!-- 下拉的value是01234  显示的值是02468  当value==subId 也就是4的时候显示值 也就是8被默认选中 -->
+            <option th:each="channelsub:${subchannels}" th:selected="${channelsub.male == subId}"    th:value="${channelsub.male}" th:text="${channelsub.Score}"></option>
+    </select>
+	
+	<script th:inline="javascript"  >
+        var size= [[${subchannels.size()}]];
+        console.info(size)
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <link href="/js/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<!-- 47.105.49.243/t1 -->
+<body>
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>thymeleaf用法</th>
+				<th><a th:href="@{${address}+'/login'}">去往神奇的世界!</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><a th:href="@{${address}+'/t1'}">thymeleaf基本操作1</a></td>
+			</tr>
+			 <tr>
+				<td><a th:href="@{${address}+'/t2'}">thymeleaf基本操作2</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr> 
+		</tbody>
+	</table>
+</body>
+</html>
